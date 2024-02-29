@@ -1,0 +1,67 @@
+
+
+Creating the App
+
+Files
+    > index.html [
+        >> Initial EMMET abb + CSS link + JS link (Note: type="module" must be included)
+        >> Then a div(root[id])
+    ]
+    > style.css
+    > App.js
+
+Installations
+    > npm init -y
+    > npm install -D parcel
+    > npm install react 
+    > npm install react-dom
+
+Add [ "start": "parcel index.html" ] to the package.json file
+
+Props
+-----
+    > Props(Properties) are used to pass values dynamically to our components.
+        <Card 
+            resName="McDonald's" 
+            cusine="Burgers, Beverages"
+            ratings="4/5"
+        />
+
+        const Card = (props)=> {
+            return (
+                <div className="res-card">
+                    <div className="img-container">
+                        <img className="resimg" alt="resimg" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/f62564e14944753903849c4ef673af4d"/>
+                        <h3 className="res-name">{props.resName}</h3>
+                    </div>
+                    <p className="cusine">{props.cusine}</p>
+                    <p className="rating">{props.ratings}</p>
+                </div>
+            )
+        }
+
+// destructuring
+        const Card = ({resName, cusine, rating})=> { 
+            return (
+                <div className="res-card">
+                    <div className="img-container">
+                        <img className="resimg" alt="resimg" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/f62564e14944753903849c4ef673af4d"/>
+                        <h3 className="res-name">{resName}</h3>
+                    </div>
+                    <p className="cusine">{cusine}</p>
+                    <p className="rating">{ratings}</p>
+                </div>
+            )
+        }
+
+    >  EOD Props are nothing but arguments.
+     
+
+We get the data from the back-end in form of "json"
+
+Config Driven UI
+================
+    > Controling the UI using data/config that is driven from the back-end
+
+
+Never use the indexes as the keys

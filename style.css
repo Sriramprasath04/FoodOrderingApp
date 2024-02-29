@@ -1,0 +1,131 @@
+/* Fonts  1) Teko 2) Asap Condensed 3) Questrial */
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 1500px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li{
+    list-style-type: none;
+    font-size: 15px;
+}
+
+.logo{
+    width: 100px;
+    margin-left: 1rem ;
+}
+
+.nav-items{
+    display: flex;
+    width: 600px;
+    justify-content: space-evenly;
+}
+
+.cart{
+    width: 25px;
+}
+
+.cart-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Reataurent Container */
+
+
+.title{
+    padding-left: 4%;
+    padding-top: 1rem;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.res-name{
+    font-family: "Asap Condensed", sans-serif;
+    font-weight: 600;
+    font-style: semi-bold;
+    font-size: 22px
+}
+
+/* Cards */
+
+.res-card{
+    margin: 1rem;
+    width: 250px;
+    height: 300px;
+    transition: all .2s ease-in-out;
+}
+
+.res-card:hover{
+    transform: scale(0.9);
+}
+
+.img-container{
+    width: 100%;
+    height: 65%;
+    position: relative;
+}
+
+.co2{
+    position: absolute;
+    font-family: "Teko", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+    font-size: 27px;
+    text-shadow: -5px 5px 20px black;
+}
+.content{
+    padding-top: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.star{
+    width: 20px;
+    height: 20px;
+}
+
+.rating{
+    display: flex;
+    gap: 4px;
+    font-weight: 700;
+}
+
+.details > p{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+    font-weight: 100;
+}
+
+.resimg{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
