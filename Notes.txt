@@ -18,6 +18,28 @@ Installations
 
 Add [ "start": "parcel index.html" ] to the package.json file
 
+
+Planning the Design and extracting the Components requires
+/* 
+
+    >> Header
+        > logo
+        > nav-items
+    >> Body
+        > search
+        >> Reataurent Container
+            > Cards
+                - Img
+                - Name of Res
+                - Star ratings
+                - Cuisine
+    >> Footer
+        > links
+        > address/contact
+        > copyright
+
+*/ 
+
 Props
 -----
     > Props(Properties) are used to pass values dynamically to our components.
@@ -55,7 +77,15 @@ Props
         }
 
     >  EOD Props are nothing but arguments.
-     
+
+    Default Props   
+    =============
+        ComponentName.defaultProps={
+            name: "Unknown",
+            age: 0,
+            dept: "CSE"
+        };
+
 
 We get the data from the back-end in form of "json"
 
@@ -73,4 +103,3 @@ Array Map
 
     > since we are rendering multiple Items/components never forgot to add the key to it.
     > Using the indexes as the keys is not a good pratice 
-    
