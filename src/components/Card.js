@@ -15,7 +15,8 @@ console.log(restro.info);
             </div>
             <div className="content">
                 <div className="details">
-                    <h3 className="res-name">{name}</h3>
+                    
+                <h3 className="res-name">{name}</h3>
                     <div className="rating">
                         <img className="star" src={star}/>
                         <p>{avgRating}</p>
