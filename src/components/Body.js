@@ -1,10 +1,28 @@
 import Card from "./Card";
 import { resList } from "../utils/data";
+import { useState } from "react";
 
 const Body = ()=> {
+    const [listOfRestaurent, setListOfRestaurent] = useState(resList);
+
+
     return (
         <div className="body">
-            <h2 className="title">Restaurant Details</h2>
+            <div className="menu">
+                <h2 className="title">Restaurant Details</h2>
+                <button 
+                    className="filter"
+                    onClick={
+                        ()=>{
+                            console.log("working...");
+                            const filteredList = listOfRestaurent.filter(
+                                (res)=>res.info.avgRating > 4.4
+                            )
+                            setListOfRestaurent(filteredList);
+                        }
+                    }>Top Restaurents
+                </button>
+            </div>
             <div className="res-container">
                     {/* Reataurent Cards */}
                     {/* <Card 
@@ -13,7 +31,7 @@ const Body = ()=> {
 
 {/* using array map method */}
                 {
-                    resList.map((restaurent, index)=>(
+                    listOfRestaurent.map((restaurent, index)=>(
                         <Card key={restaurent.info.id} restro={restaurent}/>
                     ))
                 }

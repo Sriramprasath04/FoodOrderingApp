@@ -57,10 +57,23 @@ li{
 
 
 .title{
-    padding-left: 4%;
-    padding-top: 1rem;
+    padding: 1rem 4%;
+    font-family: "Asap Condensed", sans-serif;
 }
-
+.filter{
+    padding: 7px;
+    color: lightgray;
+    border: 1px solid black;
+    color: black;
+    border-radius: 10px;
+}
+.menu{
+    display: flex;
+    align-items: center;
+}
+.menu > button:hover{
+    transform: scale(0.9);
+}
 .res-container{
     display: flex;
     flex-wrap: wrap;

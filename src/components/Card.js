@@ -1,11 +1,12 @@
 import { IMAGE_PATH } from "../utils/constants";
 import star from "../img/icons8-star-100.png"
 
+
 const Card = (props)=> {
     const {restro} = props
     // name, availability, avgRating, cuisines, areaName
     const {name, cloudinaryImageId, costForTwo, avgRating, cuisines, areaName} = restro.info
-console.log(restro.info);
+// console.log(restro.info);
 
     return (
         <div className="res-card">
@@ -16,7 +17,7 @@ console.log(restro.info);
             <div className="content">
                 <div className="details">
                     
-                <h3 className="res-name">{name}</h3>
+                    <h3 className="res-name">{name}</h3>
                     <div className="rating">
                         <img className="star" src={star}/>
                         <p>{avgRating}</p>
