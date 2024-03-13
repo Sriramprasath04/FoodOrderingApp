@@ -1,15 +1,34 @@
 import Card from "./Card";
 import { resList } from "../utils/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Body = ()=> {
     const [listOfRestaurent, setListOfRestaurent] = useState(resList);
 
+    useEffect(()=>{
+        fetchData()
+    }, []);
+
+    const fetchData = async ()=> {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&collection=83667");
+
+        const json = await data.json();
+        console.log("API: ->", json);
+        setListOfRestaurent(json.data.cards[3]?.card?.gridElements?.infoWithStyle?.restaurants);
+    }
 
     return (
         <div className="body">
             <div className="menu">
                 <h2 className="title">Restaurant Details</h2>
+                <button 
+                    className="filter all"
+                    onClick={
+                        ()=>{
+                            setListOfRestaurent(resList);
+                        }
+                    }
+                >All</button>
                 <button 
                     className="filter"
                     onClick={
