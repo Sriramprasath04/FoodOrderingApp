@@ -1,5 +1,3 @@
-
-
 Creating the App
 
 Files
@@ -103,3 +101,104 @@ Array Map
 
     > since we are rendering multiple Items/components never forgot to add the key to it.
     > Using the indexes as the keys is not a good pratice 
+
+React Router
+============
+    > Installation
+        npm i react-router-dom
+
+    > For creating the route, firstly we have to goto "App.js", there we have to create the routing [configurations]->means what will happen in the specific route
+        1) Import createBrowserRouter from "react-router-dom".
+        2) create the configuration
+            const appRouter = createBrowserRouter([
+                {
+                    path: "/",
+                    element: <AppLayout/>, [Home Page Component here]
+                },
+                {
+                    path: "/about",
+                    element: <About/>,
+                },
+                {
+                    path: "/contact",
+                    element: <Contact/>,
+                },
+            ])
+
+            The "createBrowserRouter" will takes a list of objects as input which defines the different paths.
+        3) Provide the configuration that we created above,
+           we have to Import the "RouterProvider" from "react-router-dom"
+
+            Note: Before using the react-router-dom on our projects we have rendered our page components
+            But now, we are providing the it via, RouterProvider like
+                <RouterProvider router = {appRouter} />
+
+            const root = ReacrDOM.createRoot(document.getElementById("root"));
+            root.render(<RouterProvider router = {appRouter} />);
+
+    > For handiling the error routes we have an errorElement
+        {
+            path: "/",
+            element: <AppLayout/>,
+            errorElement: <Error/>,
+        }
+
+    > "react-router-dom" gives us a access to an important hook 
+    named "useRouteError"
+       It gives us the details about the error as object
+ 
+ Children Routes
+    {
+        path: "/",
+        element: <AppLayout/>,
+        children: [
+            {
+                path: "/",
+                element: <Body/>, 
+            },
+            {
+                path: "/about",
+                element: <About/>,
+            },
+            {
+                path: "/contact",
+                element: <Contact/>,
+            },
+        ],
+        errorElement: <Error/>,
+    }
+
+    for loading paths inside the outlets we have "Outlet" from "react-router-dom"
+    using this "Outlet" we can fill the paths and it will be replaced with the children components
+    according to the component
+
+    const AppLayout = () =>{
+        return(
+            <>
+                <Header/>
+                <Outlet/>
+            </>
+        );
+    }
+
+    Note:
+       > In react never ever use the anchor tag for routing
+        bcoz, it reloads/refresh the entaire page again,
+        instead import and use the "Link" component from "react-router-dom"
+
+        <Link to="/about">About</Link> 
+
+
+                                    It is used by the Single page applications
+                                                        ||                
+       > There are 2 types of routing in web-apps       ||
+            1) Client Side Routing [** React uses the Client Side Routing **]
+                => Consider we are having two pages about & contact when
+                we click on the "a" tag on any of those, it only loads the component
+                when load the app for the first-time it already comes with the entire stuff
+
+            2) Server Side Routing  
+                => Consider we are having two pages about, contact when
+                we click on the "a" tag on any of those, It reloads the whole page
+                It send a request for the page(about.html) fetches the html and 
+                renders the output.

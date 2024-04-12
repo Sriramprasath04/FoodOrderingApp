@@ -1,25 +1,50 @@
-import cart from '../img/icons8-shopping-cart-100.png'
+import burger from '../img/burger.png'
 import logo from '../img/logo.png'
 import user from '../img/icons8-person-100.png'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const Header = ()=> {
+    const [data, setData] = useState("Login");
+    const change = ()=>{
+        setData(data == "Login" ? "Logout" : "Login");
+    }
+
+    const [show, setshow] = useState("none");
+    const showNav = () =>{
+        setshow(show == "none"?"show":"none");
+    }
+
     return (
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo" src={logo} alt="logo"/>
+        <header>
+            <div className="header">
+                <div className="logo-container">
+                    <img className="logo" src={logo} alt="logo"/>
+                </div>
+                <div className='nav-cont'>
+                    <ul className="nav-items">
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/">Cart</Link></li>
+                    </ul>
+                    <button 
+                        className = {data + " invide"}
+                        onClick={change}
+                    >{data}</button>
+                    <Link className='burger'
+                        onClick={showNav}>
+                        <img src={burger}/>
+                    </Link>
+                </div>
             </div>
-            <ul className="nav-items">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li>
-                    <a href="#" className="nav-cont">
-                        <p>Cart</p>
-                        <img className="cart" src={cart}/>
-                    </a>
-                </li>
+            <ul className={show+" nav-items-md"}>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/">Cart</Link></li>
             </ul>
-        </div>
+        </header>
     )
 }
 
