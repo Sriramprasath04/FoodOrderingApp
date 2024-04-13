@@ -5,6 +5,7 @@ import About from "./About";
 
 const Body = ()=> {
     const [listOfRestaurent, setListOfRestaurent] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
 
     useEffect(()=>{
         fetchData();
@@ -25,12 +26,18 @@ const Body = ()=> {
         <ShimmerUI/>
     ) : (
         <div className="body">
-            <About/>
             <div className="search-container">
                 <div className="search">
-                    <input type="text" className="search-box"/>
+                    <input type="text" className="search-box" value={searchInput} onChange={(e)=>{
+                        setSearchInput(e.target.value);
+                    }}/>
                     <button className="search-button" onClick={()=>{
-                        
+                        const filteredRest = listOfRestaurent.filter(
+                            (res)=>{
+                                res.info.name.includes(searchInput);
+                            }
+                        );
+                        setListOfRestaurent(filteredRest);
                     }}>Search</button>
                 </div>
                 <div className="filters">

@@ -7,7 +7,7 @@ const About = () =>{
             <div className="abt-cont">
                 <h1>Order your favourite food from where you're</h1>
                 <p>Choose from a diverse menu featuring a delectable array of restaurents crafted with the finest dishes and culinary expertise. Our mission is to satisfy your craving and elevate your dining at home with delicious meal on time.</p>
-                <Link to="/about">View Restaurents</Link>
+                <Link to="/">View Restaurents</Link>
             </div>
         </div>
     );

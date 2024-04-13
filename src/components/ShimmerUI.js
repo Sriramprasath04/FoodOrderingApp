@@ -10,10 +10,12 @@ const ShimmerUI = ()=>{
                         <div className="filter-ui"></div>
                         <div className="filter-ui"></div>
                         <div className="filter-ui"></div>
-                    </div> */}
-                </div>
-                <div className="res-title-cont">
-                    <div className="res-title"></div>
+                    </div> 
+                    <div className="res-title-cont">
+                        <div className="res-title"></div>
+                    </div>
+                    */}
+                    
                 </div>
                 <div className="res-container-ui">
                     {

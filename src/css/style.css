@@ -220,6 +220,7 @@ ul>li>a{
     width: 100%;
     margin-top: 1rem;
     display: flex;
+    justify-content: center;
     gap: 1rem;
 }
 .search-box{
@@ -280,7 +281,7 @@ footer{
 
 /* about---------------------- */
 .about{
-    width: 100%;
+    width: 90%;
     height: 500px;
     margin: 2rem 0;
     background-repeat: no-repeat;
@@ -355,7 +356,7 @@ footer{
         display: block;
     }
     .about{
-        width: 90%;
+        width: 100%;
     }
     .nav-items{
         display: none;
