@@ -202,3 +202,39 @@ React Router
                 we click on the "a" tag on any of those, It reloads the whole page
                 It send a request for the page(about.html) fetches the html and 
                 renders the output.
+    
+ Dynamic Routing
+    we can specify that the url is dynamic by adding '/:Id'
+    
+    {
+        path: "/restaurants/:resId",
+        element: <Menu/>
+    }
+
+
+API calling
+===========
+    To fetch api, we use the 'useEffect' hook
+    syntax:
+    -------
+        useEffect(
+            ()=>{
+                fetchData();
+            }, []
+        )
+
+        -> It takes two arguments 
+            1) callback function
+            2) dependency array (Optional)
+                    - case 1 (when not used) :  The useEffect is called everytime when our component renders
+                    - case 2 (Empty dependency array) :  The useEffect is called once after initial render
+                    - case 3 (when not used) :  The useEffect is called everytime when our component renders
+
+        example,
+            const fetchData = async() =>{
+                const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0826802&lng=80.2707184&restaurantId=133885&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER");
+                const json = await data.json();
+
+                console.log(json);
+                setResInfo(json.data);
+            }
