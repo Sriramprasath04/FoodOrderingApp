@@ -1,26 +1,35 @@
 import Card from "./Card";
 import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = ()=> {
-    const [listOfRestaurent, setListOfRestaurent] = useState([]);
+    const onlineStatus = useOnlineStatus();
+    const [listOfRestaurent, setListOfRestaurent] = useState(null);
     const [searchInput, setSearchInput] = useState("");
+    const [api, setApi] = useState([]);
 
     useEffect(()=>{
         fetchData();
     }, []);
 
+
     const fetchData = async ()=> {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json = await data.json();
-        console.log("API: ->", json);
-        setListOfRestaurent(json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        const filter = json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        console.log("Filter Data =>"+json.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setApi(filter);
+        setListOfRestaurent(filter);
     };
 
-    
+    if(!onlineStatus){
+        return <h1>You're Offline!! Check your internet connection!</h1>
+    }    
 
-    return (listOfRestaurent.length === 0 )? 
+    return (listOfRestaurent === null)? 
     (
         <ShimmerUI/>
     ) : (
@@ -31,29 +40,25 @@ const Body = ()=> {
                         setSearchInput(e.target.value);
                     }}/>
                     <button className="search-button" onClick={()=>{
-                        const filteredRest = listOfRestaurent.filter(
-                            (res)=>{
-                                res.info.name.includes(searchInput);
-                            }
+                        const filteredRestaurent = api.filter(
+                            (res)=> res.info.name.toLowerCase().includes(searchInput.toLowerCase())
                         );
-                        setListOfRestaurent(filteredRest);
+                        console.log(filteredRestaurent);
+                        setListOfRestaurent(filteredRestaurent);
                     }}>Search</button>
                 </div>
                 <div className="filters">
-                    <button 
-                        className="filter all"
+                    <button className="filter all"
                         onClick={
                             ()=>{
-                                fetchData();
+                                setListOfRestaurent(api);
                             }
                         }
                     >All</button>
-                    <button 
-                        className="filter"
+                    <button className="filter"
                         onClick={
                             ()=>{
-                                console.log("working...");
-                                const filteredList = listOfRestaurent.filter(
+                                const filteredList = api.filter(
                                     (res)=>res.info.avgRating > 4
                                 )
                                 setListOfRestaurent(filteredList);
@@ -63,9 +68,15 @@ const Body = ()=> {
                     <button className="filter"
                         onClick={
                             ()=>{
-                                const filteredList = listOfRestaurent.filter(
+                                const filteredList = api.filter(
                                     (res)=>res.info.veg == true
                                 )
+
+                                if(filteredList.length === 0){
+                                    setListOfRestaurent([]);
+                                    return;
+                                } 
+
                                 setListOfRestaurent(filteredList);
                             }
                         }
@@ -73,14 +84,11 @@ const Body = ()=> {
                     </button>
                 </div>
             </div>
-            <div className="menu">
-                <h2 className="title">Restaurant Details</h2>
-            </div>
             <div className="container">
                 <div className="res-container">
                     {
                         listOfRestaurent.map((restaurent, index)=>(
-                            <Card key={restaurent.info.id} restro={restaurent}/>
+                            <Link key={restaurent.info.id} to={"/restaurants/"+ restaurent.info.id}><Card  restro={restaurent}/></Link>
                         ))
                     }
                 </div>

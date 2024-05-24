@@ -2,33 +2,20 @@ import { useEffect, useState } from "react";
 import ShimmerUI from './ShimmerUI';
 
 import star from '../img/icons8-star-100.png';
-import { IMAGE_PATH, RES_MENU_PATH } from "../utils/constants";
+import { IMAGE_PATH } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const Menu = () => {
-    const[resInfo, setResInfo] = useState(null);
-    const{resId} = useParams();
-
-    useEffect(
-        () =>{
-            fetchData();
-        }, []
-    );
+    const {resId} = useParams();
+    const resdata = useRestaurantMenu(resId); 
+    console.log(resdata);
+    if(resdata === null)  return  <ShimmerUI/>;
     
-    const fetchData = async() =>{
-        const data = await fetch(RES_MENU_PATH+resId+"&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER");
-        const json = await data.json();
-        console.log(json.data)
-        console.log(RES_MENU_PATH+resId);
-        setResInfo(json.data);
-    };
+    // let topPick = resdata?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR.cards[1]?.card?.card?.carousel;
+    const {name, costForTwoMessage, totalRatingsString, avgRatingString} = resdata;
+    // const {itemCards} = resDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card;
     
-    if(resInfo === null)  return  <ShimmerUI/> ;
-    
-
-    const {name, costForTwoMessage, totalRatingsString, avgRatingString} = resInfo?.cards[2]?.card?.card?.info;
-    const {title, carousel} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1]?.card?.card;
-    const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2]?.card?.card;
     return (
         <div className="menu-lis f">
             <div className="detail">
@@ -40,13 +27,13 @@ const Menu = () => {
                 </div>
                 <p className="">{costForTwoMessage}</p>
             </div>
-            <h3 className="tit">{title}</h3>
-            <div className="top-picks">
+            <h3 className="tit">Top Picks</h3>
+            {/* <div className="top-picks">
                 <div className="tp-container">
                     {
-                        carousel.map(
-                            (items)=> (
-                                <div className="tp-cont">
+                        topPick.map(
+                            (items, indx)=> (
+                                <div className="tp-cont" key={indx}>
                                     <img src={IMAGE_PATH+items.creativeId}/>
                                     <button>ADD</button>
                                 </div>
@@ -54,8 +41,8 @@ const Menu = () => {
                         )
                     }
                 </div>
-            </div>
-            <h3 className="tit">{'Recomented'+' [ ' + itemCards.length+' ]'}</h3>
+            </div> */}
+            {/* <h3 className="tit">{'Recomented'+' [ ' + itemCards.length+' ]'}</h3>
             <div className="item-list">
                 {
                     itemCards.map(
@@ -85,7 +72,7 @@ const Menu = () => {
                         )
                     )
                 }
-            </div>
+            </div> */}
         </div>
     );
 }

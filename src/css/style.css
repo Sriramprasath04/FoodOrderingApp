@@ -15,6 +15,7 @@ li{
     width: 100px;
 }
 
+
 button{
     border: 0;
     padding: 14px 30px;
@@ -33,6 +34,7 @@ button:hover{
     align-items: center;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     align-items: center;
 }
 
@@ -136,10 +138,8 @@ ul>li>a{
 .res-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    justify-content: center;
-    align-items: center;
-    place-items: center;
     width: 100%;
+    min-height: 57vh;
     gap: 2rem;
 }
 
@@ -218,7 +218,7 @@ ul>li>a{
 /* search ---------------- */
 .search-container{
     width: 100%;
-    margin-top: 1rem;
+    margin: 2rem 0;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -236,21 +236,21 @@ ul>li>a{
 input:focus{
     outline: none;
 }
-.Logout{
+.Signin{
     background-color: black;
     color: white;
 }
 
-.Logout:hover{
+.Signin:hover{
     background-color: black;
     color: white;
-    border: 1px solid black;
 }
 
 .filter{
     margin: 0 1rem;
 }
 .container{
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -261,12 +261,15 @@ input:focus{
 footer{
     height: 4rem;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-top: 1px solid rgba(0, 0, 0, 0.415);
     border-bottom: 1px solid rgba(0, 0, 0, 0.415);
+    position: relative;
+    bottom: 0;
+    left: 0;
 }
 
 footer > p > a{
@@ -407,6 +410,10 @@ footer{
 .tit{
     margin-top: 10px;
 }
+a{
+    color: black;
+    text-decoration: none;
+}
 .tp-container{
     display: flex;
     padding: 20px;
@@ -441,6 +448,23 @@ footer{
     border-radius: 12px;
     width: 200px;
     height: 100%;
+}
+
+.contact{
+    border: 2px solid black;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+.contact>p{
+    margin: 10px 0 8px;
+}
+.contact>h5{
+    margin-top: 4px;
+}
+.contact>img{
+    width: 130px;
+    border-radius: 50%;
 }
 
 @media only screen and (max-width: 1100px) {

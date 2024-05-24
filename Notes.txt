@@ -102,6 +102,13 @@ Array Map
     > since we are rendering multiple Items/components never forgot to add the key to it.
     > Using the indexes as the keys is not a good pratice 
 
+CORS Policy
+===========
+
+Optional Chaining
+=================
+
+
 React Router
 ============
     > Installation
@@ -109,6 +116,8 @@ React Router
 
     > For creating the route, firstly we have to goto "App.js", there we have to create the routing [configurations]->means what will happen in the specific route
         1) Import createBrowserRouter from "react-router-dom".
+            import {createBrowserRouter} from "react-router-dom";
+
         2) create the configuration
             const appRouter = createBrowserRouter([
                 {
@@ -126,17 +135,19 @@ React Router
             ])
 
             The "createBrowserRouter" will takes a list of objects as input which defines the different paths.
+        
         3) Provide the configuration that we created above,
            we have to Import the "RouterProvider" from "react-router-dom"
+                import {RouterProvider} from "react-router-dom";
 
             Note: Before using the react-router-dom on our projects we have rendered our page components
             But now, we are providing the it via, RouterProvider like
                 <RouterProvider router = {appRouter} />
 
-            const root = ReacrDOM.createRoot(document.getElementById("root"));
-            root.render(<RouterProvider router = {appRouter} />);
+                const root = ReacrDOM.createRoot(document.getElementById("root"));
+                root.render(<RouterProvider router = {appRouter} />);
 
-    > For handiling the error routes we have an errorElement
+    > For handiling the error routes we have an "errorElement"
         {
             path: "/",
             element: <AppLayout/>,
@@ -145,6 +156,8 @@ React Router
 
     > "react-router-dom" gives us a access to an important hook 
     named "useRouteError"
+            import {useRouteError} from "react-router-dom"
+
        It gives us the details about the error as object
  
  Children Routes
@@ -195,7 +208,7 @@ React Router
             1) Client Side Routing [** React uses the Client Side Routing **]
                 => Consider we are having two pages about & contact when
                 we click on the "a" tag on any of those, it only loads the component
-                when load the app for the first-time it already comes with the entire stuff
+                when loading the app for the first-time it already comes with the entire stuff
 
             2) Server Side Routing  
                 => Consider we are having two pages about, contact when
@@ -238,3 +251,17 @@ API calling
                 console.log(json);
                 setResInfo(json.data);
             }
+
+
+Single Responsibility Principal
+===============================
+    > Keep our code as light as possible.
+    > When we breakdown our code into small-modules, it's easy to find the bug with the help of test cases.
+    > It makes our code reusable, maintanable and testable.
+
+ Custom Hooks :
+ ==============
+    > We can make our own Custom Hook, which helps us to make our code more modular & simple
+    > Always prefer creating the file for Custom Hooks inside the "utils folder".
+    > The file name should be same as the Custom Hook name 
+        - What are the i/p and o/p

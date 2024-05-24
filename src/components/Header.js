@@ -1,11 +1,13 @@
 import burger from '../img/burger.png'
 import logo from '../img/logo.png'
-import user from '../img/icons8-person-100.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import useOnlineStatus from '../utils/useOnlineStatus'
 
 const Header = ()=> {
+    const onlineStatus = useOnlineStatus();
     const [data, setData] = useState("Login");
+    
     const change = ()=>{
         setData(data == "Login" ? "Logout" : "Login");
     }
@@ -31,7 +33,8 @@ const Header = ()=> {
                     <button 
                         className = {data + " invide"}
                         onClick={change}
-                    >{data}</button>
+                    >{data}
+                    {onlineStatus? " 🟢" : " 🔴"}</button>
                     <Link className='burger'
                         onClick={showNav}>
                         <img src={burger}/>
