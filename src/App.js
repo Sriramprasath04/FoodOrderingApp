@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM  from "react-dom/client";
-import {createBrowserRouter, RouterProvider, Outlet}  from "react-router-dom";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,6 +8,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import MenuItems from "./components/MenuItems";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const AppLayout = ()=> {
     return (
